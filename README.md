@@ -38,6 +38,9 @@ independent kernel re-check of every compiled file (`leanchecker`).
   the paper's theorem*. Part I is a guided tour; Part II is a definition-by-definition and
   axiom-by-axiom reference. It contains the map from the paper's numbered results to their formal
   counterparts, the full axiom trace, and the quoted source statement for each cited axiom.
+- **`brualdi_lean/PROOFS.md`** — the proofs in English: one entry per result, each giving the
+  statement, a step-by-step account of the Lean proof keyed to source lines, and a proof
+  reconstructed from the formal development alone.
 
 The kernel certifies the deduction. It cannot certify that the formal statement means what the English
 statement means, nor that the cited theorems say what we claim they say. Those two things are what the
