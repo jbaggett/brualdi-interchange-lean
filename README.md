@@ -32,7 +32,7 @@ independent kernel re-check of every compiled file (`leanchecker`).
 
 ## What to read
 
-- **`brualdi_lean/TRUST_SURFACE_PUBLIC.md`** — start here. It states the final theorem, explains the
+- **`brualdi_lean/TRUST_SURFACE.md`** — start here. It states the final theorem, explains the
   definitions it factors through, identifies every cited axiom on the kernel trace, and quotes the
   corresponding statement from the literature, so that a reader can decide whether *the Lean theorem is
   the paper's theorem*. Part I is a guided tour; Part II is a definition-by-definition and
