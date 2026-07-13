@@ -1,0 +1,31 @@
+# Independent verification of the Paper 1 theorem, on GitHub's runners.
+# Gate 1: the whole development builds, and Sec5 really is compiled (it was once silently skipped).
+# Gate 2: the axiom trace of brualdi_MH is exactly Lean's three axioms plus the cited externals.
+# Gate 3: an independent kernel re-check of every .olean.
+name: build-and-verify
+on: [push, workflow_dispatch]
+defaults:
+  run:
+    working-directory: brualdi_lean
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch mathlib cache
+        run: lake exe cache get
+      - name: Build (gate 1)
+        run: |
+          lake build
+          test -f .lake/build/lib/lean/BrualdiLean/Sec5.olean
+      - name: Axiom trace (gate 2)
+        run: |
+          lake env lean CheckAxioms.lean | tee /tmp/trace.txt
+          grep -q "propext" /tmp/trace.txt
+          test "$(grep -c 'Brualdi.Ledger.' /tmp/trace.txt)" -le 8
+      - name: Independent kernel re-check (gate 3)
+        run: lake env leanchecker BrualdiLean
