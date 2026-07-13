@@ -36,8 +36,8 @@ independent kernel re-check of every compiled file (`leanchecker`).
   definitions it factors through, identifies every cited axiom on the kernel trace, and quotes the
   corresponding statement from the literature, so that a reader can decide whether *the Lean theorem is
   the paper's theorem*. Part I is a guided tour; Part II is a definition-by-definition and
-  axiom-by-axiom reference.
-- **`brualdi_lean/PROOFS.md`** — the map from the paper's numbered results to their formal counterparts.
+  axiom-by-axiom reference. It contains the map from the paper's numbered results to their formal
+  counterparts, the full axiom trace, and the quoted source statement for each cited axiom.
 
 The kernel certifies the deduction. It cannot certify that the formal statement means what the English
 statement means, nor that the cited theorems say what we claim they say. Those two things are what the
