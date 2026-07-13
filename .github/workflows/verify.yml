@@ -29,3 +29,30 @@ jobs:
           test "$(grep -c 'Brualdi.Ledger.' /tmp/trace.txt)" -le 8
       - name: Independent kernel re-check (gate 3)
         run: lake env leanchecker BrualdiLean
+      - name: TRUST_SURFACE.md matches the trace (gate 4)
+        # The trust surface is the document a referee reads to decide what this proof assumes.
+        # If it ever disagrees with the actual kernel trace, it is worse than no document, so
+        # this gate fails the build rather than let the two drift apart.
+        run: |
+          python3 - <<'PY'
+          import re, subprocess, sys
+          out = subprocess.run(["lake","env","lean","CheckAxioms.lean"],
+                               capture_output=True, text=True).stdout
+          trace = re.search(r"depends on axioms: \[(.*?)\]", out, re.S)
+          if not trace:
+              sys.exit("could not read the axiom trace")
+          names = [n.strip().split(".")[-1] for n in trace.group(1).split(",")]
+          cited = [n for n in names if n not in ("propext","choice","sound")]
+          doc = open("TRUST_SURFACE.md", encoding="utf-8").read()
+          missing = [n for n in cited if n not in doc]
+          if missing:
+              sys.exit(f"TRUST_SURFACE.md does not document these cited axioms: {missing}")
+          n = len(cited)
+          words = {1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",
+                   8:"eight",9:"nine",10:"ten"}
+          wrong = [w for k,w in words.items()
+                   if k != n and re.search(rf"\b{w}\s+cited\s+axioms\b", doc, re.I)]
+          if wrong:
+              sys.exit(f"TRUST_SURFACE.md claims '{wrong[0]} cited axioms'; the trace carries {n}")
+          print(f"OK: TRUST_SURFACE.md documents all {n} cited axioms, and no others")
+          PY
