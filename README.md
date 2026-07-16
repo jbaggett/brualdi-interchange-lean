@@ -3,6 +3,8 @@
 The machine-checked companion to the paper *Interchange graphs of (0,1)-matrices are maximally
 Hamiltonian*, by Jeffrey S. Baggett and Huiya Yan.
 
+**Paper: [arXiv:2607.13165](https://arxiv.org/abs/2607.13165)**
+
 For integer vectors `R, S`, the interchange graph `G(R,S)` has as vertices the (0,1)-matrices with row
 sum vector `R` and column sum vector `S`, two being adjacent when they differ by a single 2x2
 interchange. Brualdi conjectured that `G(R,S)` is always Hamiltonian. The paper proves the stronger
@@ -55,8 +57,9 @@ dependency closure of the theorem, and nothing beyond it: work on adjacent probl
 is not part of this artifact.
 
 - Toolchain: `lean-toolchain` (`leanprover/lean4:v4.31.0`); mathlib pinned in `lakefile.toml`.
-- The paper's arXiv version cites this repository at an immutable tag. Use that tag to reproduce
-  exactly what the paper claims; `main` may move ahead of it.
+- [arXiv:2607.13165](https://arxiv.org/abs/2607.13165) cites this repository at the immutable tag
+  [`arxiv-v1`](https://github.com/jbaggett/brualdi-interchange-lean/tree/arxiv-v1). Use that tag to
+  reproduce exactly what the paper claims; `main` may move ahead of it.
 
 ## License
 
