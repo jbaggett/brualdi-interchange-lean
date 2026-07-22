@@ -1,6 +1,13 @@
 /-
   Brualdi-MH -- Coleman decomposition layer (Lean 4, mathlib v4.31.0).
 
+  READER NOTE (grep-for-axiom): the two `axiom` declarations in this file —
+  `flipGraph_connected` and `weak_ct_product_raw` — are NOT Coleman results. They are
+  unrelated cited classics (interchange-graph connectivity, Ryser 1963 / Brualdi–Manber 1983;
+  and the weak CT-product representation of §3) that live in this file only so the derived
+  transport lemmas below can use them. EVERY Coleman statement in this file is a THEOREM:
+  Thm 1.5 and Prop 1.1(c) are proved from first principles (DPC.lean/DPC2.lean/Thm15.lean)
+  and imported — nothing of Coleman's is assumed. See EXPECTED_AXIOMS.txt for the full trace.
   This file owns the CITED-AXIOM layer and the decomposed Coleman CORE-prime proof. The
   definitions live in ColemanDefs.lean (split 2026-07-06); the from-scratch proof files
   DPC.lean/DPC2.lean are imported BELOW the definitions and ABOVE this file, so the former

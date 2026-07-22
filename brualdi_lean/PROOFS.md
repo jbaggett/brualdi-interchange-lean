@@ -1217,7 +1217,7 @@ of complete transposition graphs" — with the degenerate-size caveat made expli
 
 ## V.2 Theorem 7.1 (the double induction): `canonicalCTProduct_paired_two`
 
-**Lean:** [`Coleman.lean` lines 866–1271](https://github.com/jbaggett/brualdi-interchange-lean/blob/arxiv-v1/BrualdiLean/Coleman.lean#L866-L1271) — trace: foundations + `coleman_thm15` (A1), `prop11c` (A2), `hypercube_ctProduct_paired_two` (A3).
+**Lean:** [`Coleman.lean` lines 866–1271](https://github.com/jbaggett/brualdi-interchange-lean/blob/arxiv-v1/BrualdiLean/Coleman.lean#L866-L1271) — trace: **foundations only**. Its three inputs `coleman_thm15`, `prop11c`, `hypercube_ctProduct_paired_two` — the historical labels A1, A2, A3 used below — are **proved from first principles** (`coleman_thm15_proved`, `prop11c_proved`, `hypercube_paired_two_proved`), not cited axioms; this chain carries no cited axiom (see the summary table, "Theorem 7.1"). The A1/A2/A3 labels are retained below only as shorthand for the three theorems.
 
 ### Statement
 
@@ -1230,10 +1230,10 @@ demands.
 Structural induction over the canonical rank list, one case per constructor
 (1205–1213):
 
-- **All ranks 2** — the product is a hypercube; the paired 2-cover property is the cited
-  Jo–Park–Chwa theorem (A3). This branch exists because Coleman's welding condition
-  excludes the `K₂` leaf, so the hypercube family needs its own citation, exactly as in
-  the paper.
+- **All ranks 2** — the product is a hypercube; the paired 2-cover property is the
+  Jo–Park–Chwa result (A3), proved from first principles in the formalization. This branch
+  exists because Coleman's welding condition excludes the `K₂` leaf, so the hypercube family
+  needs its own argument, exactly as in the paper.
 - **A single large rank** (`CT_a`, `a ≥ 3`) — Coleman's Theorem 1.5 (A1) applies to
   `CT_a` as a transposition-like graph with single-vertex welding leaves, giving paired
   `(a−1)`-covers; the downgrade (A2, Prop 1.1(c)) brings `a−1` down to 2, its size guard
